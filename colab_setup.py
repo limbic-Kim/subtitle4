@@ -4,7 +4,15 @@ import sys
 
 def setup_environment():
     os.environ["XDG_RUNTIME_DIR"] = "/tmp/runtime-root"
-    os.system("bash setup.sh")
+
+    os.system(
+        "apt-get update && apt-get install -y ffmpeg portaudio19-dev python3-pyaudio"
+    )
+    os.system("mkdir -p /tmp/runtime-root")
+
+    os.system(
+        "pip install -q openai-whisper faster-whisper transformers gradio==3.37.0 pytube moviepy pyyaml"
+    )
 
     # 설치 확인
     try:
